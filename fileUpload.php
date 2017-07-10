@@ -27,6 +27,8 @@ if (!empty($_FILES)) {
 
 
     $fileName  = str_replace(" ", "_",$name);
+    $fileName  = str_replace(".svg", "",$fileName);
+    $fileName  = str_replace(".SVG", "",$fileName);
 
     $templateHydrate = $template;
     $templateHydrate = str_replace("@@_IMAGE_NAME_@@", $fileName, $templateHydrate);
