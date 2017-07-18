@@ -1,0 +1,8 @@
+.@@_IMAGE_NAME_@@ {
+  @extend %@@_IMAGE_NAME_@@;
+}
+
+%@@_IMAGE_NAME_@@{
+  background-image: url(@@_IMAGE_DATA_@@) !important;
+  @include image-background();
+}
