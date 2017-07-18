@@ -3,7 +3,7 @@
 This script will compress and convert in base 64 all the svg images who are in 
 the select folder, it's going to use the file ```template.scss.txt``` to create sass class
 in the ```_image.scss``` file. You can edit the file ```template.scss.txt``` to be of your liking but 
-be sure to use this 2 variable in it ```@@_IMAGE_NAME_@@``` who use the name of your svg file, and 
+be sure to use this 2 variables in it ```@@_IMAGE_NAME_@@``` who use the name of your svg file, and 
 ```@@_IMAGE_DATA_@@``` who will be replace by the base 64 string.
 
 ```@@_IMAGE_NAME_@@``` who use the name of your svg file.
@@ -23,3 +23,5 @@ php convert.php ../Path/to/specific/folder
 The path can be relative or absolute
 
 I hope this script will help you.
+
+I use it with a css/sass template file, but you could use any type of language in the template file.
