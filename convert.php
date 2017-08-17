@@ -37,8 +37,9 @@ echo "
 
 ################################################################################\033[0m\n\n
 ";
-
+//$dir =  "../icons/";
 $dir =  "./toConvert";
+
 
 if (isset($argv[1])){
   $dir =  $argv[1];
@@ -67,6 +68,7 @@ $template = file_get_contents("template.scss.txt");
 
 $arrayOfFiles = scandir($dir);
 
+$htmlInner = "";
 $return = "";
 foreach ($arrayOfFiles as $filePath) {
   $fileInfo = pathinfo($dir."/" . $filePath);
@@ -94,9 +96,35 @@ foreach ($arrayOfFiles as $filePath) {
     $templateHidrate = str_replace("@@_IMAGE_DATA_@@", $data, $templateHidrate);
     $return .= $templateHidrate."\n\n";
     unlink("./convert/" . $filePath);
+
+    $htmlInner .= "<div class='block'>
+        <span>".$fileName."</span>
+        <div class='".$fileName."'>&nbsp;</div>
+        </div>";
   }
 }
-file_put_contents("_images.scss", $return);
+file_put_contents("sass/_images.scss", $return);
+exec("compass compile --sass-dir=sass --css-dir=css");
+
+//file_put_contents("../_images.scss", $return);
+
+
+// create index.html
+$html = "<!DOCTYPE html>
+<html lang='en'>
+<head>
+<style>".file_get_contents("css/style.css")."</style>
+<body>
+<div class='main'>";
+
+$html .= $htmlInner;
+
+
+$html.= "</div></body></html>";
+
+file_put_contents("index.html", $html);
+//file_put_contents("../index.html", $html);
+
 
 echo colorize("Finished\n");
 exit;
